@@ -3,10 +3,9 @@
 
 class TspProblem(object):
 
-    def __init__(self):
-        self.__init__(input("Input a filename containing problem data: "))
-
     def __init__(self, filename):
+        if not filename:
+            filename = input("Input a filename containing problem data: ")
         self.input_data = self.read_input_file(filename)
         self.adjacency_list = self.compute_adjacency_list(self.input_data)
 
