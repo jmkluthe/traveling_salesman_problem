@@ -14,9 +14,8 @@ class Node(object):
             for i in range(len(state)):
                 if randint(0, 99) < 10:
                     j = randint(0, len(state) - 1)
-                    self.visit_order[i] = state[j]
-                    self.visit_order[j] = state[i]
-            print(self.visit_order)
+                    self.visit_order[i], self.visit_order[j] = self.visit_order[j], self.visit_order[i]
+            #print(self.visit_order)
             self.cost = self.compute_cost(problem)
         else:
             self.visit_order = list(problem.adjacency_list.keys())
@@ -43,9 +42,9 @@ def temperature_schedule(time_to_run, current_time):
 def simulated_annealing(problem, time_to_run):
     current = Node(problem)
     t_not = time()
-    t = 0
     while 1:
-        t += time() - t_not
+        t = time() - t_not
+        #print(t)
         temp = temperature_schedule(time_to_run, t)
         if temp == 0:
             return current
@@ -57,6 +56,6 @@ def simulated_annealing(problem, time_to_run):
 
 filename = "tsp_example_1.txt"
 problem = TspProblem(filename)
-solution = simulated_annealing(problem, 120)
+solution = simulated_annealing(problem, 180)
 print(solution.cost)
 
