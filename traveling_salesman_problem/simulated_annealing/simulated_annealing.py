@@ -43,9 +43,10 @@ problem = TspProblem(filename)
 best_cost = inf
 best_solution = None
 tnot = time()
-while time() - tnot < 180:
+while time() - tnot < 12000:
     #solution = _thread.start_new_thread(simulated_annealing, (problem, 180))
-    solution = simulated_annealing(problem, 600)
+    solution = simulated_annealing(problem, 30)
+    #print(solution.cost)
     if solution.cost < best_cost:
         best_cost = solution.cost
         best_solution = solution
