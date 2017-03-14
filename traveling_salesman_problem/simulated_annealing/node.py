@@ -26,5 +26,6 @@ class Node(object):
             #print(problem.adjacency_list[self.visit_order[i]])
             #print(problem.adjacency_list[self.visit_order[i]][self.visit_order[i + 1]])
             cost += problem.adjacency_list[self.visit_order[i]][self.visit_order[i + 1]]
+        cost += problem.adjacency_list[self.visit_order[len(self.visit_order) - 1]][self.visit_order[0]]
         return cost
 

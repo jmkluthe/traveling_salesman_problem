@@ -25,8 +25,6 @@ def simulated_annealing(problem, time_to_run):
     temp = 27695
     while 1:
         #t = time() - t_not
-        n += 1
-        temp = temperature_schedule(temp)
         if temp == 0:
             return current
         #if n % 100 == 0:
@@ -36,6 +34,8 @@ def simulated_annealing(problem, time_to_run):
         delta = successor.cost - current.cost
         if delta < 0 or exp(- delta/temp) > random():
             current = successor
+        n += 1
+        temp = temperature_schedule(temp)
 
 
 filename = "../tsp_example_1.txt"
@@ -45,7 +45,7 @@ best_solution = None
 tnot = time()
 while time() - tnot < 180:
     #solution = _thread.start_new_thread(simulated_annealing, (problem, 180))
-    solution = simulated_annealing(problem, 180)
+    solution = simulated_annealing(problem, 600)
     if solution.cost < best_cost:
         best_cost = solution.cost
         best_solution = solution
