@@ -46,7 +46,7 @@ def calc_average_cost_increase(problem, inner_iterations, outer_iterations):
         inner_cost_sum = 0
         inner_nums_summed = 0
         for j in range(inner_iterations):
-            successor = Node(problem, current.visit_order)
+            successor = Node(problem, current)
             delta = successor.cost - current.cost
             if delta > 0:
                 inner_cost_sum += delta
@@ -57,15 +57,10 @@ def calc_average_cost_increase(problem, inner_iterations, outer_iterations):
         total_nums_summed += inner_nums_summed
     print("Average cost increase over all Markov chains: {}".format(round(float(total_cost_sum) / total_nums_summed)))
 
-"""
-Although I did not perform any calculations on the results of this algorithm, for the problem in example 1 df = 6180 with little variance
-
-using T0 = - df/ln(0.8) we get 27695 as the initial temperature to use for this problem
-"""
-
 
 filename = "../tsp_example_1.txt"
 problem = TspProblem(filename)
-calc_average_cost_increase(problem, 4000, 200)
-
+tnot = time()
+calc_average_cost_increase(problem, 100, 100)
+print(time() - tnot)
 

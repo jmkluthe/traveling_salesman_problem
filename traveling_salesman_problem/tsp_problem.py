@@ -6,16 +6,17 @@ class TspProblem(object):
     def __init__(self, filename):
         if not filename:
             filename = input("Input a filename containing problem data: ")
-        self.input_data = self.read_input_file(filename)
-        self.adjacency_list = self.compute_adjacency_list(self.input_data)
+        self.data = self.read_input_file(filename)
+        #self.adjacency_list = self.compute_adjacency_list(self.input_data)
 
     def read_input_file(self, filename):
         data = {}
         with open(filename, "r") as f:
             for line in f.readlines():
                 if line:
-                    vals = line.strip("\n").split(" ")
-                    data[vals[0]] = (int(vals[1]), int(vals[2]))
+                    vals = line.strip().split()
+                    #data[vals[0]] = (int(vals[1]), int(vals[2]))
+                    data[int(vals[0])] = (int(vals[1]), int(vals[2]))
         return data
 
     def write_output_file(filename, out_data):
