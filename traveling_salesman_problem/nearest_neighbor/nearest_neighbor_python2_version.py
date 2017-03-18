@@ -3,20 +3,18 @@ import string
 import csv
 import sys
 import copy
-import time
 
-tnot = time.time()
 
 #transform the input text file into a list
-inputfilename = "../test-input-7.txt"
+inputfilename = "tsp_example_3.txt"
 
+reader = csv.reader(open(inputfilename), delimiter = ' ')
 unvisited = []
-with open(inputfilename, "r") as f:
-    for row in f.readlines():
-        if row:
-            vals = row.strip().split()
-            unvisited.append([vals[0], vals[1], vals[2]])
-print(unvisited)
+i = 0
+for row in reader:
+	unvisited.append([row[0], row[1], row[2]])
+print unvisited
+
 
 
 #cityCol = 0
@@ -27,7 +25,7 @@ print(unvisited)
 
 def findClosest(currCity, unvisited):
 	closestCity = None
-	closestDistance = float("inf")
+	closestDistance = sys.maxint
 	for candCity in unvisited:
 		distance = computeDistance(currCity[1], currCity[2], candCity[1], candCity[2])
 		if distance < closestDistance:
@@ -80,5 +78,3 @@ while len(unvisited) > 0:
 outputfile.seek(0,0)
 outputfile.write(str(pathLength) + '\n')
 
-print(time.time() - tnot)
-print(pathLength)
