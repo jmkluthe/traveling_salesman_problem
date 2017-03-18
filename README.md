@@ -9,3 +9,5 @@ command line.
 To run the nearest neighbor algorithm, simply replace the value of the variable 'inputfilename' at the top of
 nearest_neighbor.py with the filename containing the input data you want to run. Then call 'python nearest_neighbor.py'
 or 'python3 nearest_neighbor.py' on the command line.
+
+**NOTE: We used the Nearest Neighbor Algorithm for the competition.**
